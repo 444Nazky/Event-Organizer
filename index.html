@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Organizer - Twitter Style</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+    <div class="twitter-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" class="logo-icon">
+                        <path fill="currentColor" d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.366-1.47-2.546 0-4.596 2.05-4.596 4.597 0 .36.042.71.122 1.05C7.728 8.088 4.1 6.128 1.671 3.149c-.39.667-.615 1.44-.615 2.27 0 1.594.812 3.002 2.047 3.829-.755-.023-1.466-.23-2.087-.574v.057c0 2.227 1.584 4.084 3.688 4.506-.385.106-.791.162-1.21.162-.296 0-.586-.028-.867-.082.587 1.831 2.287 3.165 4.302 3.203-1.573 1.232-3.556 1.966-5.71 1.966-.371 0-.736-.021-1.095-.063 2.047 1.311 4.476 2.077 7.081 2.077 8.497 0 13.129-7.04 13.129-13.129 0-.2-.005-.4-.014-.599.901-.65 1.685-1.463 2.303-2.389z"/>
+                    </svg>
+                </div>
+
+                <nav class="nav-menu">
+                    <div class="nav-item active" data-page="home">
+                        <svg viewBox="0 0 24 24" class="nav-icon">
+                            <path fill="currentColor" d="M22.46 9c-.82.36-1.7.6-2.62.73.94-.56 1.66-1.45 2-2.51-.88.52-1.86.9-2.9 1.1-.83-.88-2.02-1.43-3.33-1.43-2.52 0-4.57 2.05-4.57 4.57 0 .36.04.71.12 1.05-3.8-.19-7.17-2.01-9.42-4.78-.4.67-.62 1.44-.62 2.27 0 1.59.81 3 2.05 3.83-.75-.02-1.46-.23-2.08-.57v.06c0 2.22 1.58 4.08 3.69 4.5-.38.1-.79.16-1.21.16-.3 0-.59-.03-.87-.08.59 1.83 2.29 3.16 4.3 3.2-1.57 1.23-3.56 1.97-5.71 1.97-.37 0-.74-.02-1.1-.06 2.05 1.31 4.48 2.08 7.09 2.08 8.5 0 13.13-7.04 13.13-13.13 0-.2-.01-.4-.01-.6.9-.65 1.68-1.46 2.3-2.39z"/>
+                        </svg>
+                        <span>Beranda</span>
+                    </div>
+                    <div class="nav-item" data-page="explore">
+                        <svg viewBox="0 0 24 24" class="nav-icon">
+                            <path fill="currentColor" d="M21 10.12h2V2h-2v8.12zM18 14.34h2V9.02h-2v5.32zM14.88 9.46h2V7.59h-2v1.87zm-4 11.07h2v-8.1h-2v8.1zm4-3.42h2v-4.68h-2v4.68zM8.54 9.35H6.46V7.59h2.08v1.76zm0 11.08H6.46v-8.1h2.08v8.1zM4.46 14.34h2V9.02h-2v5.32zm0-8.32h2V2h-2v4.02z"/>
+                        </svg>
+                        <span>Jelajahi</span>
+                    </div>
+                    <div class="nav-item" data-page="events">
+                        <svg viewBox="0 0 24 24" class="nav-icon">
+                            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5.04-6.71l-2.75 3.54-1.3-1.54c-.3-.36-.77-.36-1.07 0-.3.36-.3.95 0 1.31l1.97 2.36c.3.35.77.35 1.07 0L23 9.7c.3-.36.3-.95 0-1.31-.3-.36-.77-.36-1.07 0z"/>
+                        </svg>
+                        <span>Event</span>
+                    </div>
+                    <div class="nav-item" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" class="nav-icon">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                        </svg>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-page="profile">
+                        <svg viewBox="0 0 24 24" class="nav-icon">
+                            <path fill="currentColor" d="M12 11.816c1.331 0 2.592-.484 3.586-1.386a5.006 5.006 0 1 0-7.172 0c.994.902 2.255 1.386 3.586 1.386zm0-7.228c-.897 0-1.716.335-2.289.879a2.924 2.924 0 0 1 4.578 0c-.573-.544-1.392-.879-2.289-.879zm0 13.488c-2.389 0-4.545-1.846-4.545-4.231 0-.464.056-.915.16-1.352a4.003 4.003 0 0 1 7.769 0c.104.437.16.888.16 1.352 0 2.385-2.156 4.231-4.544 4.231z"/>
+                        </svg>
+                        <span>Profil</span>
+                    </div>
+                </nav>
+
+                <button class="btn-tweet" onclick="showPage('add')">Buat Event</button>
+            </div>
+
+            <!-- Profile Card at Bottom -->
+            <div class="profile-card" onclick="showPage('profile')">
+                <div class="profile-card-content">
+                    <img src="" alt="Profile" id="sidebar-avatar" class="profile-card-avatar" style="display: none;">
+                    <div class="profile-card-avatar-text" id="sidebar-avatar-text">EO</div>
+                    <div class="profile-card-info">
+                        <div class="profile-card-name" id="sidebar-name">Event Organizer</div>
+                        <div class="profile-card-username" id="sidebar-username">@eventorganizer</div>
+                    </div>
+                </div>
+                <svg viewBox="0 0 24 24" class="profile-card-more">
+                    <path fill="currentColor" d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+                </svg>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="main-feed">
+            <!-- Home Feed -->
+            <div id="home-page" class="page">
+                <div class="feed-header">
+                    <h2>Beranda</h2>
+                </div>
+
+                <!-- Compose Tweet -->
+                <div class="compose-tweet">
+                    <img src="" alt="Profile" id="compose-avatar" class="compose-avatar" style="display: none;">
+                    <div class="compose-avatar-text" id="compose-avatar-text">EO</div>
+                    <div class="compose-content">
+                        <textarea id="compose-text" class="compose-input" placeholder="Ada yang ingin dibagikan?"></textarea>
+                        <div class="compose-actions">
+                            <div class="compose-icons">
+                                <button class="compose-icon-btn" title="Gambar">
+                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg>
+                                </button>
+                                <button class="compose-icon-btn" title="GIF">
+                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg>
+                                </button>
+                                <button class="compose-icon-btn" title="Poll">
+                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg>
+                                </button>
+                                <button class="compose-icon-btn" title="Emoji">
+                                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg>
+                                </button>
+                            </div>
+                            <button class="btn-tweet-compose" onclick="showPage('add')">Posting</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Feed Items -->
+                <div id="home-events"></div>
+            </div>
+
+            <!-- Explore Page -->
+            <div id="explore-page" class="page hidden">
+                <div class="feed-header">
+                    <div class="search-container">
+                        <svg viewBox="0 0 24 24" class="search-icon">
+                            <path fill="currentColor" d="M21.53 20.47l-3.66-3.66C19.172 15.172 20 13.347 20 11.5 20 6.957 16.043 3 11.5 3S3 6.957 3 11.5 6.957 20 11.5 20c1.847 0 3.672-.828 4.81-2.13l3.66 3.66c.147.146.34.22.53.22s.383-.074.53-.22c.293-.293.293-.767 0-1.06zM5 11.5C5 7.08 8.08 4 11.5 4S18 7.08 18 11.5 14.92 19 11.5 19 5 15.92 5 11.5z"/>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Cari event...">
+                    </div>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-category="all">Semua</button>
+                    <button class="filter-btn" data-category="Workshop">Workshop</button>
+                    <button class="filter-btn" data-category="Seminar">Seminar</button>
+                    <button class="filter-btn" data-category="Konser">Konser</button>
+                    <button class="filter-btn" data-category="Olahraga">Olahraga</button>
+                </div>
+                <div id="explore-events"></div>
+            </div>
+
+            <!-- Events Page -->
+            <div id="events-page" class="page hidden">
+                <div class="feed-header">
+                    <h2>Daftar Event</h2>
+                </div>
+                <div id="events-list"></div>
+            </div>
+
+            <!-- Add Event Page -->
+            <div id="add-page" class="page hidden">
+                <div class="feed-header">
+                    <button class="back-btn" onclick="showPage('home')">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    </button>
+                    <h2>Buat Event Baru</h2>
+                </div>
+                <div class="compose-form-container">
+                    <form id="event-form">
+                        <input type="hidden" id="event-id">
+                        <div class="form-group">
+                            <label class="form-label">Judul Event *</label>
+                            <input type="text" class="form-input" id="event-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Deskripsi *</label>
+                            <textarea class="form-input" id="event-description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tanggal *</label>
+                            <input type="date" class="form-input" id="event-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Lokasi *</label>
+                            <input type="text" class="form-input" id="event-location" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Harga</label>
+                            <input type="text" class="form-input" id="event-price" placeholder="Contoh: Gratis atau 50000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kategori *</label>
+                            <select class="form-input" id="event-category" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="Workshop">Workshop</option>
+                                <option value="Seminar">Seminar</option>
+                                <option value="Konser">Konser</option>
+                                <option value="Olahraga">Olahraga</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">URL Gambar</label>
+                            <input type="url" class="form-input" id="event-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="btn-group">
+                            <button type="submit" class="btn-tweet">Posting Event</button>
+                            <button type="button" class="btn-secondary" onclick="resetForm()">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page hidden">
+                <div class="feed-header">
+                    <h2>Dashboard Event</h2>
+                </div>
+                <div id="dashboard-events"></div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profile-page" class="page hidden">
+                <div class="profile-header">
+                    <button class="back-btn" onclick="showPage('home')">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    </button>
+                    <div>
+                        <h2 id="profile-header-name">Event Organizer</h2>
+                        <p id="profile-header-events">0 Event</p>
+                    </div>
+                </div>
+
+                <div class="profile-banner"></div>
+
+                <div class="profile-info-section">
+                    <div class="profile-avatar-large">
+                        <img src="" alt="Profile" id="profile-avatar-img" class="profile-avatar-img" style="display: none;">
+                        <div class="profile-avatar-text" id="profile-avatar-text">EO</div>
+                        <label for="profile-picture-input" class="profile-picture-label">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        </label>
+                        <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="profile-details">
+                        <h1 id="profile-display-name">Event Organizer</h1>
+                        <p id="profile-display-username">@eventorganizer</p>
+                        <p id="profile-display-bio" class="profile-bio"></p>
+                        <div class="profile-meta">
+                            <span id="profile-display-location">
+                                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+                            </span>
+                            <span id="profile-display-joined">Bergabung Januari 2024</span>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-count" id="profile-following">0</span>
+                                <span class="stat-label">Mengikuti</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-count" id="profile-followers">0</span>
+                                <span class="stat-label">Pengikut</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-form-section">
+                    <h3>Edit Profil</h3>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap *</label>
+                            <input type="text" class="form-input" id="profile-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Username *</label>
+                            <input type="text" class="form-input" id="profile-username" placeholder="@username" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Bio</label>
+                            <textarea class="form-input" id="profile-bio" placeholder="Ceritakan tentang dirimu..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Lokasi</label>
+                            <input type="text" class="form-input" id="profile-location" placeholder="Jakarta, Indonesia">
+                        </div>
+                        <button type="submit" class="btn-tweet">Simpan Profil</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar (Trends) -->
+        <aside class="right-sidebar">
+            <div class="trends-container">
+                <div class="trends-header">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.53 20.47l-3.66-3.66C19.172 15.172 20 13.347 20 11.5 20 6.957 16.043 3 11.5 3S3 6.957 3 11.5 6.957 20 11.5 20c1.847 0 3.672-.828 4.81-2.13l3.66 3.66c.147.146.34.22.53.22s.383-.074.53-.22c.293-.293.293-.767 0-1.06zM5 11.5C5 7.08 8.08 4 11.5 4S18 7.08 18 11.5 14.92 19 11.5 19 5 15.92 5 11.5z"/></svg>
+                    <input type="text" class="trends-search" placeholder="Cari Event">
+                </div>
+
+                <div class="trends-list">
+                    <div class="trend-item">
+                        <div class="trend-label">Trending Worldwide</div>
+                        <div class="trend-title">#Workshop</div>
+                        <div class="trend-count">125K Postingan</div>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-label">Trending Worldwide</div>
+                        <div class="trend-title">#Seminar</div>
+                        <div class="trend-count">89K Postingan</div>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-label">Trending Worldwide</div>
+                        <div class="trend-title">#Konser</div>
+                        <div class="trend-count">56K Postingan</div>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-label">Trending Worldwide</div>
+                        <div class="trend-title">#Olahraga</div>
+                        <div class="trend-count">42K Postingan</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" class="event-image" alt="Event">
+                <h2 id="modal-title"></h2>
+                <p id="modal-description" style="margin: 20px 0;"></p>
+                <div class="modal-meta">
+                    <div class="meta-item">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                        <span id="modal-date"></span>
+                    </div>
+                    <div class="meta-item">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        <span id="modal-location"></span>
+                    </div>
+                    <div class="meta-item">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+                        <span id="modal-price"></span>
+                    </div>
+                </div>
+                <button class="btn-tweet" style="margin-top: 20px; width: 100%;">Daftar Event</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/script.js"></script>
+</body>
+</html>
