@@ -2,11 +2,11 @@ let events = JSON.parse(localStorage.getItem('events')) || [];
 let currentFilter = 'all';
 let editingId = null;
 let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {
-    name: 'Event Organizer',
-    username: '@eventorganizer',
-    bio: 'Berbagi event terbaik untuk Anda',
-    location: 'Jakarta, Indonesia',
-    profilePicture: null,
+    name: 'User',
+    username: '@username',
+    bio: 'lorem ipsum aja males ngetik',
+    location: 'rumah makan nasi padang di jepang',
+    profilePicture: 'public/images/profile.jpeg',
     followers: 0,
     following: 0
 };
@@ -72,41 +72,46 @@ function updateProfileDisplay() {
     }
 }
 
-// Sample data if empty
-if (events.length === 0) {
-    events = [
-        {
-            id: Date.now(),
-            title: "Web Development Workshop",
-            date: "2025-02-15",
-            location: "Jakarta Convention Center",
-            price: "Gratis",
-            category: "Workshop",
-            description: "Belajar membuat website modern dengan HTML, CSS, dan JavaScript dari dasar hingga mahir.",
-            image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800",
-            author: userProfile.name,
-            authorUsername: userProfile.username,
-            likes: 0,
-            retweets: 0,
-            replies: 0
-        },
-        {
-            id: Date.now() + 1,
-            title: "Startup Summit 2025",
-            date: "2025-03-10",
-            location: "Bali International Convention Centre",
-            price: "250000",
-            category: "Seminar",
-            description: "Konferensi tahunan untuk para entrepreneur dan startup Indonesia.",
-            image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800",
-            author: userProfile.name,
-            authorUsername: userProfile.username,
-            likes: 0,
-            retweets: 0,
-            replies: 0
-        }
-    ];
-    saveEvents();
+// Sample data if empty - will be created after profile is loaded
+function initializeSampleEvents() {
+    if (events.length === 0) {
+        events = [
+            {
+                id: Date.now(),
+                title: "Web Development Workshop",
+                date: "2025-02-15",
+                location: "Jakarta Convention Center",
+                price: "Gratis",
+                category: "Workshop",
+                description: "Belajar membuat website modern dengan HTML, CSS, dan JavaScript dari dasar hingga mahir.",
+                image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800",
+                author: userProfile.name,
+                authorUsername: userProfile.username,
+                likes: 0,
+                retweets: 0,
+                replies: 0
+            },
+            {
+                id: Date.now() + 1,
+                title: "Startup Summit 2025",
+                date: "2025-03-10",
+                location: "Bali International Convention Centre",
+                price: "250000",
+                category: "Seminar",
+                description: "Konferensi tahunan untuk para entrepreneur dan startup Indonesia.",
+                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800",
+                author: userProfile.name,
+                authorUsername: userProfile.username,
+                likes: 0,
+                retweets: 0,
+                replies: 0
+            }
+        ];
+        saveEvents();
+    } else {
+        // Update existing events with current profile
+        syncProfileToEvents();
+    }
 }
 
 function saveEvents() {
@@ -116,6 +121,28 @@ function saveEvents() {
 function saveProfile() {
     localStorage.setItem('userProfile', JSON.stringify(userProfile));
     updateProfileDisplay();
+    syncProfileToEvents();
+}
+
+function syncProfileToEvents() {
+    // Update all events with current user profile
+    events = events.map(event => ({
+        ...event,
+        author: userProfile.name,
+        authorUsername: userProfile.username
+    }));
+    saveEvents();
+    
+    // Re-render current page to show updated profile
+    const activePage = document.querySelector('.page:not(.hidden)');
+    if (activePage) {
+        const pageId = activePage.id;
+        const pageName = pageId.replace('-page', '');
+        if (pageName === 'home') renderHomeEvents();
+        if (pageName === 'explore') renderExploreEvents();
+        if (pageName === 'events') renderEventsList();
+        if (pageName === 'dashboard') renderDashboard();
+    }
 }
 
 function editProfile() {
@@ -127,13 +154,24 @@ function showPage(pageName) {
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     
     document.getElementById(`${pageName}-page`).classList.remove('hidden');
-    document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
+    const navItem = document.querySelector(`[data-page="${pageName}"]`);
+    if (navItem) {
+        navItem.classList.add('active');
+    }
 
     if (pageName === 'home') renderHomeEvents();
     if (pageName === 'explore') renderExploreEvents();
     if (pageName === 'events') renderEventsList();
     if (pageName === 'dashboard') renderDashboard();
     if (pageName === 'profile') loadProfileForm();
+    if (pageName === 'creators') renderCreators();
+}
+
+function renderCreators() {
+    const container = document.getElementById('creators-events');
+    if (container) {
+        container.innerHTML = '<div class="empty-state"><p>Creators page coming soon!</p></div>';
+    }
 }
 
 function renderHomeEvents() {
@@ -469,6 +507,7 @@ document.getElementById('profile-form').addEventListener('submit', (e) => {
     saveProfile();
     alert('Profil berhasil diperbarui!');
     loadProfileForm();
+    showPage('home');
 });
 
 // Profile picture upload handler
@@ -493,11 +532,42 @@ document.getElementById('profile-picture-input').addEventListener('change', (e) 
     reader.onload = (event) => {
         userProfile.profilePicture = event.target.result;
         saveProfile();
+        updateProfileDisplay();
         alert('Foto profil berhasil diubah!');
     };
     reader.readAsDataURL(file);
 });
 
+// Profile picture remove handler
+document.getElementById('profile-picture-remove-btn').addEventListener('click', () => {
+    if (confirm('Yakin ingin menghapus foto profil?')) {
+        userProfile.profilePicture = null;
+        saveProfile();
+        updateProfileDisplay();
+        alert('Foto profil berhasil dihapus!');
+    }
+});
+
+// Update remove button visibility when profile is displayed
+function updateRemoveButtonVisibility() {
+    const removeBtn = document.getElementById('profile-picture-remove-btn');
+    if (removeBtn) {
+        if (userProfile.profilePicture) {
+            removeBtn.style.display = 'flex';
+        } else {
+            removeBtn.style.display = 'none';
+        }
+    }
+}
+
+// Update the updateProfileDisplay function to show/hide remove button
+const originalUpdateProfileDisplay = updateProfileDisplay;
+updateProfileDisplay = function() {
+    originalUpdateProfileDisplay();
+    updateRemoveButtonVisibility();
+};
+
 // Initialize
 updateProfileDisplay();
+initializeSampleEvents();
 renderHomeEvents();
